@@ -14,7 +14,8 @@ enum State{
   help, // Help screen shown
   running, // Game is running, snakes are moving
   finished, // Game finished, final score displayed
-  exiting // Game is about to exit
+  exiting, // Game is about to exit
+  reset // Game has to be reset to start again
 };
 
   Game(std::size_t grid_width, std::size_t grid_height, Snake&& player1, Snake&& player2);
@@ -47,8 +48,8 @@ enum State{
   
   // Data elements: Owning/primitives
   State _state;
-  Snake _player1;
-  Snake _player2;
+  Snake _player1, _player1_init;
+  Snake _player2, _player2_init;
   ControllerDispatcher _dispatcher;
   GameController _controller;
 };

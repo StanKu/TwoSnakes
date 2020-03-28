@@ -17,7 +17,7 @@ Renderer::Renderer(const std::size_t screen_width,
   }
 
   // Create Window
-  sdl_window = SDL_CreateWindow("Snake Game", SDL_WINDOWPOS_CENTERED,
+  sdl_window = SDL_CreateWindow("Two Snakes", SDL_WINDOWPOS_CENTERED,
                                 SDL_WINDOWPOS_CENTERED, screen_width,
                                 screen_height, SDL_WINDOW_SHOWN);
 
@@ -34,7 +34,7 @@ Renderer::Renderer(const std::size_t screen_width,
   }
 
   // Load help splash
-  auto helpimage=SDL_LoadBMP("res/pic.BMP");
+  auto helpimage=SDL_LoadBMP("res/help.bmp");
     if(helpimage!=NULL){
       sdl_helpscreen = SDL_CreateTextureFromSurface(sdl_renderer,helpimage);
       SDL_SetTextureAlphaMod(sdl_helpscreen,180);

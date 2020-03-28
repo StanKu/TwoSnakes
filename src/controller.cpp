@@ -7,7 +7,7 @@
 
 bool GameController::HandleInput(SDL_Keycode key){
   // If any key is pressed during the help screen the game resumes
-  if(_game->GetState()==Game::State::help){
+  if(_game->GetState()==Game::State::help&&key!=1073741824){
     _game->SetState(Game::running);
     return true;
   }
@@ -18,6 +18,8 @@ bool GameController::HandleInput(SDL_Keycode key){
     }else if(key==SDLK_ESCAPE){
       _game->SetState(Game::exiting);
       return true;
+    }else if(_game->GetState()==Game::finished){
+      _game->SetState(Game::reset);
     }
   }
   return false;
