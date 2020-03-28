@@ -66,7 +66,7 @@ void Renderer::Render(Game* game) {
 
   // Render snake's body
   for(Snake* snake:game->getSnakes()){
-  SDL_SetRenderDrawColor(sdl_renderer, snake->_color.r, snake->_color.g, snake->_color.b, 0xFF);
+  SDL_SetRenderDrawColor(sdl_renderer, snake->_color.r+lighterBody, snake->_color.g+lighterBody, snake->_color.b+lighterBody, 0xFF);
   for (SDL_Point const &point : snake->body) {
     block.x = point.x * block.w;
     block.y = point.y * block.h;
@@ -94,7 +94,7 @@ void Renderer::Render(Game* game) {
 
 }
 
-void Renderer::UpdateWindowTitle(int score, int fps) {
-  std::string title{"Snake Score: " + std::to_string(score) + " FPS: " + std::to_string(fps)};
+void Renderer::UpdateWindowTitle(Game* game, int fps) {
+  std::string title{"Two Snakes Red: " + std::to_string(game->getSnakes()[0]->score) + " Green: " + std::to_string(game->getSnakes()[1]->score) + " FPS: " + std::to_string(fps)};
   SDL_SetWindowTitle(sdl_window, title.c_str());
 }

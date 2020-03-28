@@ -17,11 +17,11 @@ class Snake : public GController {
     SDL_Keycode right; // Key to change the direction to go right
     };
 
-  Snake(int grid_width, int grid_height, SDL_Color color, KeyBindings keys)
+  Snake(int grid_width, int grid_height, SDL_Point startPoint, SDL_Color color, KeyBindings keys)
       : _grid_width(grid_width),
         _grid_height(grid_height),
-        head_x(grid_width / 2),
-        head_y(grid_height / 2),
+        head_x(startPoint.x),
+        head_y(startPoint.y),
         _color(color),
         _keys(keys) {}
 

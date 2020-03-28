@@ -17,7 +17,7 @@ Game::Game(std::size_t grid_width, std::size_t grid_height, Snake&& player1, Sna
     _dispatcher.AddController(&_player2);
     _dispatcher.AddController(&_controller);
     
-  //PlaceFood();
+  PlaceFood();
 }
 
 void Game::SetState(Game::State state){
@@ -52,7 +52,7 @@ void Game::Run(Renderer& renderer, std::size_t target_frame_duration){
 
     // After every second, update the window title.
     if (frame_end - title_timestamp >= 1000) {
-      renderer.UpdateWindowTitle(score, frame_count);
+      renderer.UpdateWindowTitle(this, frame_count);
       frame_count = 0;
       title_timestamp = frame_end;
     }

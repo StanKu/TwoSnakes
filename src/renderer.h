@@ -15,7 +15,7 @@ class Renderer {
 
   void Render(Snake const snake, SDL_Point const &food);
   void Render(Game* game);
-  void UpdateWindowTitle(int score, int fps);
+  void UpdateWindowTitle(Game* game, int fps);
 
  private:
   SDL_Window *sdl_window;
@@ -26,6 +26,7 @@ class Renderer {
   const std::size_t screen_height;
   const std::size_t grid_width;
   const std::size_t grid_height;
+  static constexpr int lighterBody=30;
 };
 
 #endif

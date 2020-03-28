@@ -19,8 +19,8 @@ int main() {
   std::cout << "Score: " << game.GetScore() << "\n";
   std::cout << "Size: " << game.GetSize() << "\n"; */
 Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
-Snake snake1 = Snake(kGridWidth, kGridHeight, SDL_Color{0xA1,0x15,0x35,0x00},Snake::KeyBindings{SDLK_UP, SDLK_DOWN, SDLK_LEFT, SDLK_RIGHT});
-Snake snake2 = Snake(kGridWidth, kGridHeight, SDL_Color{0x35,0x85,0x50,0x00},Snake::KeyBindings{SDLK_w, SDLK_s, SDLK_a, SDLK_d});
+Snake snake1 = Snake(kGridWidth, kGridHeight, SDL_Point{kGridWidth/4, kGridHeight/2}, SDL_Color{0xA1,0x15,0x35,0x00},Snake::KeyBindings{SDLK_UP, SDLK_DOWN, SDLK_LEFT, SDLK_RIGHT});
+Snake snake2 = Snake(kGridWidth, kGridHeight, SDL_Point{3*kGridWidth/4, kGridHeight/2}, SDL_Color{0x35,0x85,0x50,0x00},Snake::KeyBindings{SDLK_w, SDLK_s, SDLK_a, SDLK_d});
 //Player player1=Player(std::move(snake1),Player::KeyBindings{SDLK_UP, SDLK_DOWN, SDLK_LEFT, SDLK_RIGHT});
 //Player player2=Player(std::move(snake2),Player::KeyBindings{SDLK_w, SDLK_s, SDLK_a, SDLK_d});
 Game game(kGridWidth, kGridHeight, std::move(snake1), std::move(snake2));
