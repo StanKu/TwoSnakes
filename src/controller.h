@@ -2,7 +2,7 @@
 #define CONTROLLER_H
 
 #include <vector>
-#include "snake.h"
+#include <SDL.h>
 class Game;
 
 class GController{

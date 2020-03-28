@@ -1,6 +1,7 @@
 #include "snake.h"
 #include <cmath>
 #include <iostream>
+#include "game.h"
 
 void Snake::Update() {
   SDL_Point prev_cell{
@@ -39,19 +40,19 @@ void Snake::UpdateHead() {
   }
 
   // Wrap the Snake around to the beginning if going off of the screen.
-  head_x = fmod(head_x + grid_width, grid_width);
-  head_y = fmod(head_y + grid_height, grid_height);
+  head_x = fmod(head_x + _grid_width, _grid_width);
+  head_y = fmod(head_y + _grid_height, _grid_height);
 }
 
 void Snake::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) {
   // Add previous head location to vector
   body.push_back(prev_head_cell);
 
-  if (!growing) {
+  if (!_growing) {
     // Remove the tail from the vector.
     body.erase(body.begin());
   } else {
-    growing = false;
+    _growing = false;
     size++;
   }
 
@@ -63,7 +64,7 @@ void Snake::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) 
   }
 }
 
-void Snake::GrowBody() { growing = true; }
+void Snake::GrowBody() { _growing = true; }
 
 // Inefficient method to check if cell is occupied by snake.
 bool Snake::SnakeCell(int x, int y) {
@@ -78,3 +79,41 @@ bool Snake::SnakeCell(int x, int y) {
   return false;
 }
 
+bool Snake::HandleInput(SDL_Keycode key){
+    if(_game->GetState()!=Game::State::running){
+      return false;
+    }
+    if(key==_keys.down){
+      ChangeDirection(Snake::Direction::kDown);
+    }
+    else if(key==_keys.left){
+      ChangeDirection(Snake::Direction::kLeft);
+    }
+    else if(key==_keys.right){
+      ChangeDirection(Snake::Direction::kRight);
+    }
+    else if(key==_keys.up){
+      ChangeDirection(Snake::Direction::kUp);
+    }
+    else{
+      return false;
+    }
+    return true;
+}
+void Snake::ChangeDirection(Snake::Direction targetDirection){
+  if (direction != Snake::MakeOppositeDirection(targetDirection) || size == 1) direction = targetDirection;
+  return;
+}
+
+Snake::Direction Snake::MakeOppositeDirection(Snake::Direction direction){
+  switch(direction){
+    case Snake::Direction::kDown:
+      return Snake::Direction::kUp;
+    case Snake::Direction::kUp:
+      return Snake::Direction::kDown;
+    case Snake::Direction::kLeft:
+      return Snake::Direction::kRight;
+    case Snake::Direction::kRight:
+      return Snake::Direction::kLeft; 
+  }
+}
