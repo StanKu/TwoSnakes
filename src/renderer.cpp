@@ -34,7 +34,7 @@ Renderer::Renderer(const std::size_t screen_width,
   }
 
   // Load help splash
-  auto helpimage=SDL_LoadBMP("data/pic.BMP");
+  auto helpimage=SDL_LoadBMP("res/pic.BMP");
     if(helpimage!=NULL){
       sdl_helpscreen = SDL_CreateTextureFromSurface(sdl_renderer,helpimage);
       SDL_SetTextureAlphaMod(sdl_helpscreen,180);

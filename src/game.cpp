@@ -40,6 +40,7 @@ void Game::Run(Renderer& renderer, std::size_t target_frame_duration){
   int frame_count = 0;
 
   while(_state!=exiting){
+    frame_start = SDL_GetTicks();
     _dispatcher.DispatchControllerEvents();
     Update();
     renderer.Render(this);
