@@ -8,16 +8,18 @@ class Snake {
  public:
   enum class Direction { kUp, kDown, kLeft, kRight };
 
-  Snake(int grid_width, int grid_height)
+  Snake(int grid_width, int grid_height, int color)
       : grid_width(grid_width),
         grid_height(grid_height),
         head_x(grid_width / 2),
-        head_y(grid_height / 2) {}
+        head_y(grid_height / 2),
+        _color(color) {}
 
   void Update();
 
   void GrowBody();
   bool SnakeCell(int x, int y);
+  int getColor(){return _color;}
 
   Direction direction = Direction::kUp;
 
@@ -35,6 +37,9 @@ class Snake {
   bool growing{false};
   int grid_width;
   int grid_height;
+
+  // Data elements: Owning/primitives
+  int _color;
 };
 
 #endif
